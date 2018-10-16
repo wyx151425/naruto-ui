@@ -1,0 +1,30 @@
+.head {
+    width: 430px;
+    height: 50px;
+    margin: 32px auto;
+    margin-bottom: 24px;
+}
+
+.logo {
+    display: block;
+    float: left;
+    width: 110px;
+    height: 53px;
+    margin-top: -4px;
+    margin-left: -2px;
+}
+
+.brand {
+    float: left;
+    margin-left: 8px;
+}
+
+.company {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.system {
+    margin-top: 4px;
+    font-size: 14px;
+}
