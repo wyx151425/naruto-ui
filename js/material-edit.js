@@ -1,6 +1,7 @@
 const main = new Vue({
     el: "#main",
     data: {
+        loading: true,
         material: {
             companyNo: "",
             code: "",
@@ -504,115 +505,136 @@ const main = new Vue({
             });
         },
         setMaterialCompanyNo: function (companyNo) {
-            this.material.companyNo = companyNo;
+            if (null !== companyNo) {
+                this.material.companyNo = companyNo;
+            }
         },
         setMaterialCode: function (code) {
-            this.material.code = code;
+            if (null !== code) {
+                this.material.code = code;
+            }
         },
         setMaterialName: function (name) {
-            this.material.name = name;
+            if (null !== name) {
+                this.material.name = name;
+            }
         },
         setMaterialShortName: function (shortName) {
-            this.material.shortName = shortName;
+            if (null !== shortName) {
+                this.material.shortName = shortName;
+            }
         },
         setMaterialSpecification: function (specification) {
-            this.material.specification = specification;
+            if (null !== specification) {
+                this.material.specification = specification;
+            }
         },
         setMaterialModel: function (model) {
-            this.material.model = model;
+            if (null !== model) {
+                this.material.model = model;
+            }
         },
-        setMaterialDescription: function (desciption) {
-            this.material.desciption = desciption;
+        setMaterialDescription: function (description) {
+            if (null !== description) {
+                this.material.description = description;
+            }
         },
         setMaterialDrawingNo: function (drawingNo) {
-            this.material.drawingNo = drawingNo;
+            if (null !== drawingNo) {
+                this.material.drawingNo = drawingNo;
+            }
         },
         setMaterialGeneralSort: function (generalSort) {
-            if ("" !== generalSort) {
+            if (null !== generalSort && "" !== generalSort) {
                 this.material.generalSort = generalSort;
             }
         },
         setMaterialInventoryUnit: function (inventoryUnit) {
-            if ("" !== inventoryUnit) {
+            if (null !== inventoryUnit && "" !== inventoryUnit) {
                 this.material.inventoryUnit = inventoryUnit;
             }
         },
         setMaterialSourceMark: function (sourceMark) {
-            if ("" !== sourceMark) {
+            if (null !== sourceMark && "" !== sourceMark) {
                 this.material.sourceMark = sourceMark;
             }
         },
-        setMaterialRespCompany: function (respCompany) {
-            if ("" !== respCompany) {
+        setMaterialRespCompany: function (respCompany, respDept) {
+            if (null !== respCompany && "" !== respCompany) {
                 this.material.respCompany = respCompany;
                 this.respDeptSelect();
+                this.material.respDept = respDept;
             }
         },
         setMaterialKeyPartMark: function (keyPartMark) {
-            if ("" !== keyPartMark) {
+            if (null !== keyPartMark && "" !== keyPartMark) {
                 this.material.keyPartMark = keyPartMark;
             }
         },
         setMaterialKeyPartSort: function (keyPartSort) {
-            if ("" !== keyPartSort) {
+            if (null !== keyPartSort && "" !== keyPartSort) {
                 this.material.keyPartSort = keyPartSort;
             }
         },
         setMaterialVirtualPartMark: function (virtualPartMark) {
-            if ("" !== virtualPartMark) {
+            if (null !== virtualPartMark && "" !== virtualPartMark) {
                 this.material.virtualPartMark = virtualPartMark;
             }
         },
         setMaterialQualifiedMark: function (qualifiedMark) {
-            if ("" !== qualifiedMark) {
+            if (null !== qualifiedMark && "" !== qualifiedMark) {
                 this.material.qualifiedMark = qualifiedMark;
             }
         },
         setMaterialInspectMark: function (inspectMark) {
-            if ("" !== inspectMark) {
+            if (null !== inspectMark && "" !== inspectMark) {
                 this.material.inspectMark = inspectMark;
             }
         },
         setMaterialBatchMark: function (batchMark) {
-            if ("" !== batchMark) {
+            if (null !== batchMark && "" !== batchMark) {
                 this.material.batchMark = batchMark;
             }
         },
         setMaterialPurchaseSort: function (purchaseSort) {
-            if ("" !== purchaseSort) {
+            if (null !== purchaseSort && "" !== purchaseSort) {
                 this.material.purchaseSort = purchaseSort;
             }
         },
         setMaterialPurchaseMark: function (purchaseMark) {
-            if ("" !== purchaseMark) {
+            if (null !== purchaseMark && "" !== purchaseMark) {
                 this.material.purchaseMark = purchaseMark;
             }
         },
         setMaterialGroupPurMark: function (groupPurMark) {
-            if ("" !== groupPurMark) {
+            if (null !== groupPurMark && "" !== groupPurMark) {
                 this.material.groupPurMark = groupPurMark;
             }
         },
         setMaterialOwnPurMark: function (ownPurMark) {
-            if ("" !== ownPurMark) {
+            if (null !== ownPurMark && "" !== ownPurMark) {
                 this.material.ownPurMark = ownPurMark;
             }
         },
         setMaterialDefRepository: function (defRepository) {
-            if ("" !== defRepository) {
+            if (null !== defRepository && "" !== defRepository) {
                 this.material.defRepository = defRepository;
             }
         },
         setMaterialOutSource: function (outSource) {
-            if ("" !== outSource) {
+            if (null !== outSource && "" !== outSource) {
                 this.material.outSource = outSource;
             }
         },
         setMaterialPlanner: function (planner) {
-            this.material.planner = planner;
+            if (null !== planner) {
+                this.material.planner = planner;
+            }
         },
         setMaterialFixedAdvTime: function (fixedAdvTime) {
-            this.material.fixedAdvTime = fixedAdvTime;
+            if (null !== fixedAdvTime) {
+                this.material.fixedAdvTime = fixedAdvTime;
+            }
         }
     },
     mounted: function () {
@@ -635,7 +657,7 @@ const main = new Vue({
                         main.setMaterialGeneralSort(material.generalSort);
                         main.setMaterialInventoryUnit(material.inventoryUnit);
                         main.setMaterialSourceMark(material.sourceMark);
-                        main.setMaterialRespCompany(material.respCompany);
+                        main.setMaterialRespCompany(material.respCompany, material.respDept);
                         main.setMaterialKeyPartMark(material.keyPartMark);
                         main.setMaterialKeyPartSort(material.keyPartSort);
                         main.setMaterialVirtualPartMark(material.virtualPartMark);
@@ -656,8 +678,10 @@ const main = new Vue({
                 } else {
                     popoverSpace.append("数据获取失败", false);
                 }
+                mask.loadStop();
             }).catch(function (error) {
             popoverSpace.append("服务器访问失败", false);
+            mask.loadStop();
         });
     }
 });

@@ -46,3 +46,14 @@ const popoverSpace = new Vue({
         }
     }
 });
+const mask = new Vue({
+    el: "#mask",
+    data: {
+        loading: true
+    },
+    methods: {
+        loadStop: function () {
+            this.loading = false;
+        }
+    }
+});

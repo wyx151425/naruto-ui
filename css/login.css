@@ -9,7 +9,7 @@
     display: block;
     float: left;
     width: 110px;
-    height: 53px;
+    height: 57px;
     margin-top: -4px;
     margin-left: -2px;
 }
@@ -20,11 +20,18 @@
 }
 
 .company {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
 }
 
 .system {
     margin-top: 4px;
-    font-size: 14px;
+    font-size: 15px;
+}
+
+.btn {
+    height: 52px;
+    margin-top: 8px;
+    font-size: 16px;
+    border-radius: 0;
 }

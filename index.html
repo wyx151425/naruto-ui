@@ -5,11 +5,7 @@
     <title>基础数据管理系统</title>
     <link rel="shortcut icon" href="images/CSE.png" type="image/x-icon"/>
     <link rel="stylesheet" href="css/naruto.css"/>
-    <style>
-        .btn {
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/index.css"/>
 </head>
 <body>
 <header class="header">
@@ -19,182 +15,63 @@
         </div>
     </div>
 </header>
-<main class="container">
+<main id="main" class="container">
     <div class="panel">
-        <button class="btn pull-right" type="button">导入</button>
+        <div class="select-group">
+            <label class="select-label">状态</label>
+            <select class="form-select" v-model="status" @change="statusQuery">
+                <option value="0">全部</option>
+                <option value="1">待完善</option>
+                <option value="2">已完善</option>
+            </select>
+        </div>
+        <button class="btn btn-import pull-right" type="button" @click="exportFile" :disabled="exporting">
+            {{exportAction}}
+        </button>
+        <button class="btn btn-import pull-right" type="button" style="margin-right: 16px" @click="importModal">导入
+        </button>
         <table class="table table-bordered table-hover">
             <thead>
-                <tr>
-                    <th class="col-1-of-6">公司号</th>
-                    <th class="col-1-of-6">物料编码</th>
-                    <th class="col-1-of-6">物料名称</th>
-                    <th class="col-1-of-6">物料简称</th>
-                    <th class="col-1-of-6">完善状态</th>
-                    <th class="col-1-of-6">操作</th>
-                </tr>
+            <tr>
+                <th class="col-1-of-10">公司号</th>
+                <th class="col-2-of-10">物料编码</th>
+                <th class="col-3-of-10">物料名称</th>
+                <th class="col-1-of-10">物料简称</th>
+                <th class="col-1-of-10">完善状态</th>
+                <th class="col-1-of-10">导出状态</th>
+                <th class="col-1-of-10">操作</th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="success">已完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="success">已完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="success">已完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>01</td>
-                    <td>59622866-1.0</td>
-                    <td>关键件</td>
-                    <td>件</td>
-                    <td class="error">待完善</td>
-                    <td>
-                        <a class="link" href="material-edit.html?materialCode=1">编辑</a>
-                    </td>
-                </tr>
+            <tr v-for="material in materialList" v-cloak>
+                <td>{{material.companyNo}}</td>
+                <td>{{material.code}}</td>
+                <td>{{material.name}}</td>
+                <td>{{material.shortName}}</td>
+                <td :class="{error: 1 == material.status, success: 2 == material.status || 3 == material.status}">
+                    <span v-if="1 == material.status">未完善</span>
+                    <span v-if="2 == material.status">已完善</span>
+                    <span v-if="3 == material.status">已完善</span>
+                </td>
+                <td :class="{error: 1 == material.status, success: 2 == material.status, prompt: 3 == material.status}">
+                    <span v-if="1 == material.status">待完善</span>
+                    <span v-if="2 == material.status">可导出</span>
+                    <span v-if="3 == material.status">已导出</span>
+                </td>
+                <td>
+                    <a class="link" :href="'material-edit.html?materialCode=' + material.code">编辑</a>
+                </td>
+            </tr>
             </tbody>
         </table>
         <nav class="pull-right">
             <ul class="pagination">
-                <li class="disabled"><span>«</span></li>
-                <li class="active"><span>1</span></li>
-                <li><span>2</span></li>
-                <li><span>3</span></li>
-                <li><span>4</span></li>
-                <li><span>5</span></li>
-                <li><span>»</span></li>
+                <li :class="{disabled: 1 == pageContext.index}">
+                    <span @click="previousPage"><span class="icon icon-menu-left"></span></span></li>
+                <li><span>{{pageContext.index}}</span></li>
+                <li :class="{disabled: pageContext.pageTotal == pageContext.index || 0 == pageContext.pageTotal}">
+                    <span @click="nextPage"><span class="icon icon-menu-right"></span></span>
+                </li>
             </ul>
         </nav>
     </div>
@@ -202,5 +79,30 @@
 <footer class="footer">
     <span>&copy;2018 中国船舶重工集团柴油机有限公司</span>
 </footer>
+<div id="modal" class="modal" v-if="show" v-cloak>
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <span class="modal-title">导入文件</span>
+            <span class="modal-close"><span class="icon icon-remove" @click="show = false"></span></span>
+        </div>
+        <div class="modal-content">
+            <div class="form-group">
+                <label class="form-label">文件</label>
+                <input id="file" class="form-file" type="file" @change="filePicker"/>
+            </div>
+            <button class="btn btn-picker" type="button" @click="importFile" :disabled="importing">{{action}}</button>
+        </div>
+    </div>
+</div>
+<div id="popoverSpace" class="popover-space" v-if="prompts.length > 0">
+    <popover v-for="prompt in prompts" v-bind:key="prompt.id" v-bind:prompt="prompt"></popover>
+</div>
+<div id="mask" class="mask" v-if="loading">
+    <p class="mask-prompt">数据获取中...</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="js/naruto.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
