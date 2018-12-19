@@ -13,6 +13,7 @@ const main = new Vue({
             dataTotal: 0,
         },
         materialList: [],
+        targetPage: ""
     },
     methods: {
         materialListQuery: function (index, size, status) {
@@ -79,10 +80,30 @@ const main = new Vue({
 
             document.body.appendChild(link);
             link.click();
+        },
+        pageSearch: function () {
+            axios.get(requestContext + "api/materials?pageIndex=" + 1 + "&pageSize=" + 15 + "&status=" + 0)
+                .then(function (response) {
+                    let statusCode = response.data.statusCode;
+                    if (200 === statusCode) {
+                        let data = response.data.data;
+                        main.pageContext.index = data.index;
+                        main.pageContext.pageTotal = data.pageTotal;
+                        main.pageContext.dataTotal = data.dataTotal;
+                        main.materialList = data.data;
+                    } else {
+                        popoverSpace.append("数据获取失败", false);
+                    }
+                    mask.loadStop();
+                }).catch(function (error) {
+                popoverSpace.append("服务器访问失败", false);
+                console.log("FUCK" + error);
+                mask.loadStop();
+            });
         }
     },
     mounted: function () {
-        axios.get(requestContext + "api/materials?pageIndex=" + 1 + "&pageSize=" + 15 + "&status=" + 0)
+        axios.get(requestContext + "api/materials?pageIndex=" + 1 + "&pageSize=" + 15 + "&status=" + 0 + "&prefect=" + 0)
             .then(function (response) {
                 let statusCode = response.data.statusCode;
                 if (200 === statusCode) {

@@ -12,6 +12,10 @@
     <div class="header-fixed">
         <div class="container">
             <img class="logo" src="images/CSE.png" alt=""/>
+            <div class="account">
+                <span>王振琦</span>
+                <a class="icon icon-off" href="logout"></a>
+            </div>
         </div>
     </div>
 </header>
@@ -30,41 +34,69 @@
         </button>
         <button class="btn btn-import pull-right" type="button" style="margin-right: 16px" @click="importModal">导入
         </button>
-        <table class="table table-bordered table-hover">
-            <thead>
-            <tr>
-                <th class="col-1-of-10">公司号</th>
-                <th class="col-2-of-10">物料编码</th>
-                <th class="col-3-of-10">物料名称</th>
-                <th class="col-1-of-10">物料简称</th>
-                <th class="col-1-of-10">完善状态</th>
-                <th class="col-1-of-10">导出状态</th>
-                <th class="col-1-of-10">操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="material in materialList" v-cloak>
-                <td>{{material.companyNo}}</td>
-                <td>{{material.code}}</td>
-                <td>{{material.name}}</td>
-                <td>{{material.shortName}}</td>
-                <td :class="{error: 1 == material.status, success: 2 == material.status || 3 == material.status}">
-                    <span v-if="1 == material.status">未完善</span>
-                    <span v-if="2 == material.status">已完善</span>
-                    <span v-if="3 == material.status">已完善</span>
-                </td>
-                <td :class="{error: 1 == material.status, success: 2 == material.status, prompt: 3 == material.status}">
-                    <span v-if="1 == material.status">待完善</span>
-                    <span v-if="2 == material.status">可导出</span>
-                    <span v-if="3 == material.status">已导出</span>
-                </td>
-                <td>
-                    <a class="link" :href="'material-edit.html?materialCode=' + material.code">编辑</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <nav class="pull-right">
+        <div style="overflow-x: scroll; width: 1120px">
+            <table class="table table-bordered table-hover" style="width: 3200px">
+                <thead>
+                <tr>
+                    <th>物料编码</th>
+                    <th>物料名称</th>
+                    <th>物料简称</th>
+                    <th>完善状态</th>
+                    <th>导出状态</th>
+                    <!-- 技术中心 -->
+                    <th>规格</th>
+                    <th>型号</th>
+                    <th>图号</th>
+                    <th>普通分类</th>
+                    <th>库存单位</th>
+                    <th>采购自制标记</th>
+                    <th>责任公司</th>
+                    <th>责任部门</th>
+                    <th>关键件标记</th>
+                    <th>关键件大类</th>
+                    <th>虚拟件标记</th>
+                    <th>合批标记</th>
+                    <th>具体描述</th>
+                    <!-- 质量合规 -->
+                    <th>质检标记</th>
+                    <th>批次标记</th>
+                    <!-- 战略采购 -->
+                    <th>采购分类</th>
+                    <th>可采购标记</th>
+                    <th>可集采标记</th>
+                    <th>可自采标记</th>
+                    <!-- 集配中心 -->
+                    <th>默认仓库</th>
+                    <!-- 生产运行 -->
+                    <th>外协标记</th>
+                    <th>计划员</th>
+                    <th>固定提前期</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="material in materialList" v-cloak>
+                    <td>{{material.code}}</td>
+                    <td>{{material.name}}</td>
+                    <td>{{material.shortName}}</td>
+                    <td :class="{error: 1 == material.status, success: 2 == material.status || 3 == material.status}">
+                        <span v-if="1 == material.status">未完善</span>
+                        <span v-if="2 == material.status">已完善</span>
+                        <span v-if="3 == material.status">已完善</span>
+                    </td>
+                    <td :class="{error: 1 == material.status, success: 2 == material.status, prompt: 3 == material.status}">
+                        <span v-if="1 == material.status">待完善</span>
+                        <span v-if="2 == material.status">可导出</span>
+                        <span v-if="3 == material.status">已导出</span>
+                    </td>
+                    <td>
+                        <a class="link" :href="'material-edit.html?materialCode=' + material.code">编辑</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <nav class="pull-left">
             <ul class="pagination">
                 <li :class="{disabled: 1 == pageContext.index}">
                     <span @click="previousPage"><span class="icon icon-menu-left"></span></span></li>
@@ -74,6 +106,15 @@
                 </li>
             </ul>
         </nav>
+        <div class="pull-right">
+            <div class="page-group">
+                <input class="page-input" type="text"/>
+                <p class="page-search">
+                    <span class="icon icon-search"></span>
+                </p>
+            </div>
+            <p class="page-total">共{{pageContext.pageTotal}}页</p>
+        </div>
     </div>
 </main>
 <footer class="footer">
